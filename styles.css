@@ -1,0 +1,67 @@
+body {
+  margin:0;
+  padding:0;
+  background-color: Cyan;
+}
+
+header {
+  width: 100%;
+  background-color: #1B676B;
+  display: inline-block;
+}
+
+#home-button{
+  font-family: Verdana;
+  margin-left: 30px;
+
+}
+h2 {
+  font-size: 25px;
+}
+
+.stream-wrapper{
+  background-color: red;
+  width: 55%;
+  text-align:center;
+  border-radius:10px;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left:15px;
+}
+
+#user-stream-wrapper {
+  float: right;
+  width: 40%;
+  margin-right:20px;  
+}
+
+.stream {
+  width:100%;
+  background-color:yellow;
+  float: center;
+  text-align: left;
+  margin-top: 10px;
+  padding-top:10px;
+
+}
+
+.footer {
+  background-color:black;
+  color:white;
+  text-align:center;
+  margin-top: 5px;
+  padding-top: 0.5px;
+
+
+}
+.boxsize {
+}
+.timesize{
+}
+
+
+.load-button {
+  width:50%;
+  border-radius:0;
+}
+
