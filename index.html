@@ -3,25 +3,74 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
   </head>
   <body>
+    
+    <header>
+      <h1 id="home-button">Twittler</h1>
+    </header>
+
+    <!--Make "Tweet" Section here-->
+    <section id="stream-container">
+      <div class="stream-wrapper" id="home-stream-wrapper">
+        <h2>Twittler Feed</h2>
+        <div class="load-tweets">
+          <button class="load-button">Load Newest Tweets...</button>
+        </div>
+        <table class="stream" id="home-tweets">
+          <tr class="adjust-this">
+            <th class="tweet-head"></th>
+            <th class="tweet-date"></th>
+          </tr>
+        </table>
+      </div>
+
+      <div class="stream-wrapper" id="user-stream-wrapper">
+        <h2><span id="user-name">User's</span> Tweets</h2>
+        <table class="stream" id="user-tweets">
+        </table>
+      </div>
+    </section>
+
+
+    <div class="footer" id="footer-id">
+      <p>2015 Twittler, Created by Eric Kao</p>
+    </div>
+
     <script>
 
+    
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
 
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
+          var $tweet = $('<div class="boxsize"></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          $tweet.appendTo(".tweet-head");
+          var $tweetStamp = $('<div class="timesize">'+'<a class="tweet-time">'+ tweet.created_at.toDateString() + '<br>' + tweet.created_at.toLocaleTimeString() + '</br>'+'</div>');
+          $tweetStamp.appendTo(".tweet-date");
+
+        
+
           index -= 1;
         }
 
+
+        /*format tweets here
+        var formatTweet = function(tweet){
+          //each tweet will have table row/heads/etc
+          var fillers = 
+        } 
+        */
+
+
       });
 
+
     </script>
+    
+
   </body>
 </html>
