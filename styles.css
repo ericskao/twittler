@@ -31,7 +31,7 @@ h2 {
 
 #user-stream-wrapper {
   float: right;
-  width: 40%;
+  width: 45%;
   margin-right:20px;  
 }
 
@@ -67,7 +67,6 @@ h2 {
     background-color: cyan;
     padding: 10px;
     position: relative;
-    float:center;
     font-style:Arial;
     margin-left: 10px;
 }

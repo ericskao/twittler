@@ -69,8 +69,28 @@
           }
          }
         });
+
+        //try reloading tweets in a new way- actually counting rather than wiping the whole thing and starting fresh
+        $(".load-button").on("click",function(event){
+          event.preventDefault();
+          while($(".col1").length-1<streams.home){
+            for(var i = $(".col1").length; i<streams.home.length; i++){
+              var $userTweetStamp = $('<tr><td class="col1"><div class="left-tweet"><a href="#" class="tweet-author">'
+            + streams.home[i].user
+            + '</a><br/><a class="tweet-timestamp">'
+            + streams.home[i].created_at.toLocaleTimeString() + '<br/>'
+            + streams.home[i].created_at.toDateString()
+            + '</div></span></td><td><div class="tweet-content">'
+            + streams.home[i].message + '</div></td></tr>');
+            $("#user-tweets").append($userTweetStamp)
+            }
+          }
+        });
+
+
         //try doing it so that when the refresh button is clicked, it wipes everything out and adds ALL new tweets
         $(".load-button").on("click",function(event){
+          event.preventDefault();
           $("#home-tweets").empty();
           var index = streams.home.length - 1;
           while(index >= 0){
