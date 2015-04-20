@@ -18,54 +18,74 @@
         <div class="load-tweets">
           <button class="load-button">Load Newest Tweets...</button>
         </div>
-        <table class="stream" id="home-tweets">
-          <tr class="adjust-this">
-            <th class="tweet-head"></th>
-            <th class="tweet-date"></th>
-          </tr>
-        </table>
+        <div class="tweet-area"></div>
+        <table class='stream' id='home-tweets'></table>
       </div>
 
-      <div class="stream-wrapper" id="user-stream-wrapper">
-        <h2><span id="user-name">User's</span> Tweets</h2>
-        <table class="stream" id="user-tweets">
-        </table>
+      <div class="stream-wrapper">
+        <h2><span id="user-name">User</span>'s Tweets</h2>
+        <table class='stream' id='user-tweets'></table> 
       </div>
     </section>
 
 
-    <div class="footer" id="footer-id">
+    <div class="footer">
       <p>2015 Twittler, Created by Eric Kao</p>
     </div>
 
     <script>
 
-    
+      var count = streams.home.length-1;
       $(document).ready(function(){
-
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div class="boxsize"></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo(".tweet-head");
-          var $tweetStamp = $('<div class="timesize">'+'<a class="tweet-time">'+ tweet.created_at.toDateString() + '<br>' + tweet.created_at.toLocaleTimeString() + '</br>'+'</div>');
-          $tweetStamp.appendTo(".tweet-date");
-
-        
-
+          
+          //each will be new table row; table data, link for author, then user name, (close all), then etc..
+          var $tweetStamp = $('<tr><td class="col1"><div class="left-tweet"><a href="#" class="tweet-author">'
+            + tweet.user
+            + '</a><br/><a class="tweet-timestamp">'
+            + tweet.created_at.toLocaleTimeString() + '<br/>'
+            + tweet.created_at.toDateString()
+            + '</div></span></td><td><div class="tweet-content">'
+            + tweet.message + '</div></td></tr>');
+          $tweetStamp.appendTo("#home-tweets");
           index -= 1;
         }
-
-
-        /*format tweets here
-        var formatTweet = function(tweet){
-          //each tweet will have table row/heads/etc
-          var fillers = 
-        } 
-        */
-
-
+        //updating user feed
+        $('.tweet-author').on('click',function(event){
+         $("#user-name").text($(this).text());
+         $("#user-tweets").empty();
+         for(var i = 0; i<streams.home.length; i++){
+          if(streams.home[i].user === $(this).text()){
+            var $userTweetStamp = $('<tr><td class="col1"><div class="left-tweet"><a href="#" class="tweet-author">'
+            + streams.home[i].user
+            + '</a><br/><a class="tweet-timestamp">'
+            + streams.home[i].created_at.toLocaleTimeString() + '<br/>'
+            + streams.home[i].created_at.toDateString()
+            + '</div></span></td><td><div class="tweet-content">'
+            + streams.home[i].message + '</div></td></tr>');
+            $("#user-tweets").append($userTweetStamp);
+          }
+         }
+        });
+        //try doing it so that when the refresh button is clicked, it wipes everything out and adds ALL new tweets
+        $(".load-button").on("click",function(event){
+          $("#home-tweets").empty();
+          var index = streams.home.length - 1;
+          while(index >= 0){
+          var tweet = streams.home[index];
+          var $tweetStamp = $('<tr><td class="col1"><a href="#" class="tweet-author">'
+            + tweet.user
+            + '</a><br/><a class="tweet-timestamp">'
+            + tweet.created_at.toLocaleTimeString() + '<br/>'
+            + tweet.created_at.toDateString()
+            + '</span></td><td><div class="tweet-content">'
+            + tweet.message + '</div></td></tr>');
+          $tweetStamp.appendTo("#home-tweets");
+          index -= 1;
+        }
+        });
       });
 
 

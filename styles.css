@@ -1,12 +1,12 @@
 body {
   margin:0;
   padding:0;
-  background-color: Cyan;
+  background-color: black;
 }
 
 header {
   width: 100%;
-  background-color: #1B676B;
+  background-color: silver;
   display: inline-block;
 }
 
@@ -20,8 +20,8 @@ h2 {
 }
 
 .stream-wrapper{
-  background-color: red;
-  width: 55%;
+  background-color: grey;
+  width: 45%;
   text-align:center;
   border-radius:10px;
   display: inline-block;
@@ -37,7 +37,7 @@ h2 {
 
 .stream {
   width:100%;
-  background-color:yellow;
+  background-color:silver;
   float: center;
   text-align: left;
   margin-top: 10px;
@@ -55,13 +55,31 @@ h2 {
 
 }
 .boxsize {
+  font-family:Arial;
 }
-.timesize{
+.tweet-timestamp {
+  color: black;
+  font-size: 12px;
 }
 
+.tweet-content {
+  color: black;
+    background-color: cyan;
+    padding: 10px;
+    position: relative;
+    float:center;
+    font-style:Arial;
+    margin-left: 10px;
+}
 
 .load-button {
-  width:50%;
+  width:30%;
+  text-align:left;
   border-radius:0;
-}
+  margin-bottom:10px;
 
+}
+.col1 {
+  margin-top: 5px;
+  display: inline-block;
+}
