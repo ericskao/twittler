@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="styles.css"/>
   </head>
   <body>
-    
+      
     <header>
       <h1 id="home-button">Twittler</h1>
     </header>
@@ -40,7 +40,6 @@
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          
           //each will be new table row; table data, link for author, then user name, (close all), then etc..
           var $tweetStamp = $('<tr><td class="col1"><div class="left-tweet"><a href="#" class="tweet-author">'
             + tweet.user
@@ -52,8 +51,27 @@
           $tweetStamp.appendTo("#home-tweets");
           index -= 1;
         }
-        //updating user feed
-        $('.tweet-author').on('click',function(event){
+
+           //loading all new tweets
+        $(".load-tweets").on("click", ".load-button",function(event){
+          event.preventDefault();
+          $("#home-tweets").empty();
+          var index = streams.home.length - 1;
+          while(index >= 0){
+          var tweet = streams.home[index];
+          var $tweetStamp = $('<tr><td class="col1"><a href="#" class="tweet-author">'
+            + tweet.user
+            + '</a><br/><a class="tweet-timestamp">'
+            + tweet.created_at.toLocaleTimeString() + '<br/>'
+            + tweet.created_at.toDateString()
+            + '</span></td><td><div class="tweet-content">'
+            + tweet.message + '</div></td></tr>');
+          $tweetStamp.appendTo("#home-tweets");
+          index -= 1;
+        }
+        });
+
+        $(document.body).on('click', '.tweet-author' ,function(){
          $("#user-name").text($(this).text());
          $("#user-tweets").empty();
          for(var i = 0; i<streams.home.length; i++){
@@ -71,8 +89,10 @@
         });
 
         //try reloading tweets in a new way- actually counting rather than wiping the whole thing and starting fresh
+        /*
         $(".load-button").on("click",function(event){
           event.preventDefault();
+          ("#user-tweets").empty();
           while($(".col1").length-1<streams.home){
             for(var i = $(".col1").length; i<streams.home.length; i++){
               var $userTweetStamp = $('<tr><td class="col1"><div class="left-tweet"><a href="#" class="tweet-author">'
@@ -86,28 +106,8 @@
             }
           }
         });
-
-
-        //try doing it so that when the refresh button is clicked, it wipes everything out and adds ALL new tweets
-        $(".load-button").on("click",function(event){
-          event.preventDefault();
-          $("#home-tweets").empty();
-          var index = streams.home.length - 1;
-          while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweetStamp = $('<tr><td class="col1"><a href="#" class="tweet-author">'
-            + tweet.user
-            + '</a><br/><a class="tweet-timestamp">'
-            + tweet.created_at.toLocaleTimeString() + '<br/>'
-            + tweet.created_at.toDateString()
-            + '</span></td><td><div class="tweet-content">'
-            + tweet.message + '</div></td></tr>');
-          $tweetStamp.appendTo("#home-tweets");
-          index -= 1;
-        }
-        });
+        */
       });
-
 
     </script>
     
